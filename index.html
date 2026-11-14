@@ -5,6 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
   <meta name="theme-color" content="#fff6f0" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="排队详情" />
+  <meta name="format-detection" content="telephone=no" />
   <title>排队详情 · 本地演示</title>
   <style>
 :root {
@@ -40,28 +45,15 @@ button { color: inherit; }
 
 .hero {
   position: relative;
-  height: 142px;
+  height: 82px;
   background: radial-gradient(circle at 18% -20%, #ffd7c9 0, transparent 55%), linear-gradient(180deg, #fff1e9 0%, #fff9f6 100%);
 }
 .safe-top { height: max(10px, var(--safe-top)); }
-.statusbar { height: 42px; display: flex; align-items: center; padding: 0 22px; gap: 7px; font-size: 17px; letter-spacing: -.3px; }
-.statusbar strong { font-weight: 700; min-width: 48px; }
-.silent-icon { transform: rotate(45deg); font-size: 14px; }
-.status-spacer { flex: 1; }
-.signal { display: flex; align-items: end; gap: 2px; height: 16px; }
-.signal i { width: 4px; border-radius: 3px; background: #111; display: block; }
-.signal i:nth-child(1) { height: 6px; }.signal i:nth-child(2) { height: 9px; }.signal i:nth-child(3) { height: 12px; }.signal i:nth-child(4) { height: 16px; background: #c8c4c1; }
-.wifi { width: 20px; height: 14px; border: 3px solid #111; border-color: #111 transparent transparent; border-radius: 50%; position: relative; }
-.wifi::after { content: ""; position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #111; left: 5px; top: 5px; }
-.battery { height: 17px; min-width: 32px; border-radius: 5px; background: #111; color: #fff; display: flex; align-items: center; justify-content: center; position: relative; font-size: 12px; line-height: 1; }
-.battery i { position: absolute; right: -4px; width: 3px; height: 9px; background: #bcb8b5; border-radius: 0 3px 3px 0; }
 
 .navbar { height: 62px; display: grid; grid-template-columns: 54px 1fr 54px; align-items: center; padding: 0 12px; }
 .navbar h1 { font-size: 21px; text-align: center; margin: 0; font-weight: 650; letter-spacing: 1px; }
 .icon-button { border: 0; background: transparent; padding: 0; cursor: pointer; }
 .back { font-family: Georgia, serif; font-size: 52px; line-height: 1; font-weight: 300; transform: translateY(-2px); }
-.demo-badge { position: absolute; right: 14px; bottom: 7px; font-size: 10px; color: #935c48; background: rgba(255,255,255,.72); border: 1px solid rgba(230,139,103,.28); padding: 4px 8px; border-radius: 999px; backdrop-filter: blur(10px); }
-.demo-badge span { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #ff6a36; vertical-align: 1px; }
 
 .card { margin: 0 8px 8px; background: var(--paper); border-radius: 12px; box-shadow: 0 1px 0 rgba(20,20,10,.015); }
 .queue-card { position: relative; padding: 0 14px 17px; border-radius: 11px 11px 0 0; }
@@ -125,9 +117,7 @@ button { color: inherit; }
 .deal-bottom > div { text-align: right; }
 .deal-bottom > div span { display:block; color:#aaa; font-size:10px; white-space:nowrap; margin-bottom:5px; }
 .deal-bottom button { border:0; background:linear-gradient(135deg,#ff851b,#ff4d17); color:#fff; border-radius:999px; font-weight:700; padding:8px 13px; }
-.bottom-space { height: calc(80px + env(safe-area-inset-bottom, 0px)); }
-
-.edit-fab { position: fixed; z-index: 20; right: max(calc((100vw - 480px)/2 + 16px), 16px); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); height: 51px; min-width: 102px; border: 0; border-radius: 26px; color:#fff; background:linear-gradient(135deg,#ff7134,#f23c14); box-shadow:0 10px 28px rgba(238,73,26,.32); display:flex; align-items:center; justify-content:center; gap:6px; cursor:pointer; }
+.edit-fab { position: static; z-index: 20; height: 51px; min-width: 102px; margin: 16px 16px calc(24px + env(safe-area-inset-bottom, 0px)) auto; border: 0; border-radius: 26px; color:#fff; background:linear-gradient(135deg,#ff7134,#f23c14); box-shadow:0 10px 28px rgba(238,73,26,.26); display:flex; align-items:center; justify-content:center; gap:6px; cursor:pointer; }
 .edit-fab span { font-size:20px; transform:rotate(-8deg); }.edit-fab b { font-size:15px; }
 
 .sheet-backdrop { position:fixed; z-index:40; inset:0; background:rgba(20,18,16,.42); backdrop-filter:blur(2px); }
@@ -166,20 +156,11 @@ button { color: inherit; }
   <main class="phone-shell">
     <header class="hero">
       <div class="safe-top"></div>
-      <div class="statusbar" aria-label="手机状态栏">
-        <strong id="statusTime">11:51</strong>
-        <span class="silent-icon" aria-hidden="true">◢</span>
-        <span class="status-spacer"></span>
-        <span class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        <span class="wifi" aria-hidden="true"></span>
-        <span class="battery" aria-label="电量83%"><b>83</b><i></i></span>
-      </div>
       <div class="navbar">
         <button class="icon-button back" type="button" aria-label="返回" data-toast="这是本地演示页">‹</button>
         <h1>排队详情</h1>
         <span class="nav-placeholder"></span>
       </div>
-      <div class="demo-badge"><span></span> 本地演示模式</div>
     </header>
 
     <section class="queue-card card">
@@ -248,8 +229,6 @@ button { color: inherit; }
         </div>
       </article>
     </section>
-
-    <div class="bottom-space"></div>
 
     <button class="edit-fab" id="openEditor" type="button" aria-label="修改排队信息">
       <span>✎</span><b>修改</b>
@@ -356,7 +335,7 @@ button { color: inherit; }
     $("ticketLabel").textContent = ticketLabel;
     $("waitingCount").textContent = calc.waiting;
     $("estimateText").textContent = estimateLabel(calc.totalMinutes);
-    $("callingLabel").textContent = calc.waiting === 0 ? "已叫号" : `待叫号 · ${calc.called?.label || state.called.toUpperCase()}`;
+    $("callingLabel").textContent = calc.waiting === 0 ? "已叫号" : "待叫号";
     $("pickupTime").textContent = state.pickup;
     $("elapsedText").textContent = durationText(minutesSincePickup(state.pickup));
     // 这里表达的是“取号 → 待叫号 → 已就餐”的阶段进度，
@@ -368,7 +347,6 @@ button { color: inherit; }
   function updateClock() {
     const now = beijingParts();
     $("beijingClock").textContent = now.text;
-    $("statusTime").textContent = now.text.slice(0, 5);
     $("elapsedText").textContent = durationText(minutesSincePickup(state.pickup));
   }
 
