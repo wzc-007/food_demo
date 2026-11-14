@@ -45,15 +45,15 @@ button { color: inherit; }
 
 .hero {
   position: relative;
-  height: 82px;
+  height: calc(46px + max(4px, var(--safe-top)));
   background: radial-gradient(circle at 18% -20%, #ffd7c9 0, transparent 55%), linear-gradient(180deg, #fff1e9 0%, #fff9f6 100%);
 }
-.safe-top { height: max(10px, var(--safe-top)); }
+.safe-top { height: max(4px, var(--safe-top)); }
 
-.navbar { height: 62px; display: grid; grid-template-columns: 54px 1fr 54px; align-items: center; padding: 0 12px; }
-.navbar h1 { font-size: 21px; text-align: center; margin: 0; font-weight: 650; letter-spacing: 1px; }
+.navbar { height: 46px; display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; padding: 0 10px; }
+.navbar h1 { font-size: 17px; text-align: center; margin: 0; font-weight: 650; letter-spacing: .5px; }
 .icon-button { border: 0; background: transparent; padding: 0; cursor: pointer; }
-.back { font-family: Georgia, serif; font-size: 52px; line-height: 1; font-weight: 300; transform: translateY(-2px); }
+.back { font-family: Georgia, serif; font-size: 39px; line-height: 1; font-weight: 300; transform: translateY(-1px); }
 
 .card { margin: 0 8px 8px; background: var(--paper); border-radius: 12px; box-shadow: 0 1px 0 rgba(20,20,10,.015); }
 .queue-card { position: relative; padding: 0 14px 17px; border-radius: 11px 11px 0 0; }
